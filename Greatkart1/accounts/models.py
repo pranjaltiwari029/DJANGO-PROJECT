@@ -41,8 +41,8 @@ class MyAccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     # these 5 things will be asked when you will create superuser 
     #sno             = models.AutoField(primary_key=True,default=None)
-    first_name      = models.CharField(max_length=50)
-    last_name       = models.CharField(max_length=50)
+    first_name      = models.CharField(max_length=50,default="")
+    last_name       = models.CharField(max_length=50,default="")
     username        = models.CharField(max_length=50, unique=True)
     email           = models.EmailField(max_length=100, unique=True)
     phone_number    = models.CharField(max_length=50)
