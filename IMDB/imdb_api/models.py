@@ -10,7 +10,7 @@ class StreamPlatform(models.Model):
     def __str__(self):
         return self.name
 
-class WatchList(models.model):
+class WatchList(models.Model):
     
     title=models.CharField(max_length=50)
     storyLine=models.CharField(max_length=100)
