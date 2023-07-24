@@ -7,7 +7,7 @@ class WatchListSeriallizer(serializers.Serializer):
     storyLine=serializers.CharField(max_length=100)
     # platform=serializers.ForeignKey(StreamPlatform, on_delete=models.CASCADE)
     active=serializers.BooleanField(default=True)
-    created=serializers.DateTimeField(auto_now_add=True)
+    created=serializers.DateTimeField()
     
     def create(self, validated_data):
         return WatchList.objects.create(**validated_data)
