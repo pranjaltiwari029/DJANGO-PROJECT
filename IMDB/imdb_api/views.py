@@ -1,16 +1,18 @@
-from django.shortcuts import render,HttpResponse
+from django.http import HttpResponse,JsonResponse
 from .models import WatchList,StreamPlatform
+from .serializers import WatchListSeriallizer,StreamPlatformSerializer
 # Create your views here.
 
 def movie_list(request):
     movie_list=WatchList.objects.all()
-    print(movie_list)
-    return HttpResponse("testing movie list")
+    serialized= WatchListSeriallizer(movie_list,many= True)
+    return JsonResponse(serialized.data,safe=False)
 
 
 def movie_detail(request,pk):
     movie=WatchList.objects.get(pk=pk)
-    print(movie)
+    serialized=WatchListSeriallizer(movie)
     
-    return HttpResponse("testing movie detail view")
+    
+    return JsonResponse(serialized.data)
 
