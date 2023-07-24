@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import StreamPlatform,WatchList
 
-class WatchListSeriallizer(serializers.Serializer):
+class WatchListSerializer(serializers.Serializer):
     id=serializers.IntegerField(read_only=True)
     title=serializers.CharField(max_length=50)
     storyLine=serializers.CharField(max_length=100)
