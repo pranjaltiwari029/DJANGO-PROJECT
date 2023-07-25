@@ -1,5 +1,7 @@
 from django.urls import path,include
 from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
     
@@ -8,3 +10,5 @@ urlpatterns = [
     path('stream/',views.stream_list,name='stream-platform'),
     path('stream/<int:pk>',views.stream_detail,name='stream-platform-detail'),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
