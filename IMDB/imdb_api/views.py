@@ -10,39 +10,57 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework.reverse import reverse
 
+                        
 # Create your views here.
 
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
 
+class StreamPlatformList(generics.ListCreateAPIView):
+     queryset = StreamPlatform.objects.all()
+     serializer_class = StreamPlatformSerializer
 
-class StreamPlatformList(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+class StreamPlatformDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = StreamPlatform.objects.all()
+    serializer_class = StreamPlatformSerializer
     
-    queryset = StreamPlatform.objects.all()
-    serializer_class = StreamPlatformSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+# class StreamPlatformList(mixins.ListModelMixin,
+#                   mixins.CreateModelMixin,
+#                   generics.GenericAPIView):
+    
+#     queryset = StreamPlatform.objects.all()
+#     serializer_class = StreamPlatformSerializer
 
-class StreamPlatformDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-    queryset = StreamPlatform.objects.all()
-    serializer_class = StreamPlatformSerializer
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
 
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+# class StreamPlatformDetail(mixins.RetrieveModelMixin,
+#                     mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin,
+#                     generics.GenericAPIView):
+#     queryset = StreamPlatform.objects.all()
+#     serializer_class = StreamPlatformSerializer
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+    
 
 # class StreamPlatformList(APIView):
 #     # """list all the streamplatformlist 
@@ -98,18 +116,16 @@ class StreamPlatformDetail(mixins.RetrieveModelMixin,
     # I have commented these functional views as I have used class based views. we can follow both functional as well as class based 
     
 
-# def movie_list(request):
-#     movie_list=WatchList.objects.all()
-#     serialized= WatchListSerializer(movie_list,many= True)
-#     return JsonResponse(serialized.data,safe=False)
+def movie_list(request):
+    movie_list=WatchList.objects.all()
+    serialized= WatchListSerializer(movie_list,many= True)
+    return JsonResponse(serialized.data,safe=False)
 
 
-# def movie_detail(request,pk):
-#     movie=WatchList.objects.get(pk=pk)
-#     serialized=WatchListSeriallizer(movie)
-    
-    
-#     return JsonResponse(serialized.data)
+def movie_detail(request,pk):
+    movie=WatchList.objects.get(pk=pk)
+    serialized=WatchListSeriallizer(movie)
+    return JsonResponse(serialized.data)
 
 # @api_view(['GET','POST'])
 
