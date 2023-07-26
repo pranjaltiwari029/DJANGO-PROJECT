@@ -2,28 +2,44 @@ from rest_framework import serializers
 from .models import StreamPlatform,WatchList
 
 class WatchListSerializer(serializers.Serializer):
-    id=serializers.IntegerField(read_only=True)
-    title=serializers.CharField(max_length=50)
-    storyLine=serializers.CharField(max_length=100)
-    # platform=serializers.ForeignKey(StreamPlatform, on_delete=models.CASCADE)
-    active=serializers.BooleanField(default=True)
-    created=serializers.DateTimeField()
-    
-    def create(self, validated_data):
-        return WatchList.objects.create(**validated_data)
-    
-    def update(self, instance, validated_data):
+    class Meta:
+        model=WatchList
+        fields='__all__'
         
-        # Update and return an existing `Watchlist` instance, given the validated data.
+
+# class WatchListSerializer(serializers.Serializer):
+#     id=serializers.IntegerField(read_only=True)
+#     title=serializers.CharField(max_length=50)
+#     storyLine=serializers.CharField(max_length=100)
+#     # platform=serializers.ForeignKey(StreamPlatform, on_delete=models.CASCADE)
+#     active=serializers.BooleanField(default=True)
+#     created=serializers.DateTimeField()
+    
+#     def create(self, validated_data):
+#         return WatchList.objects.create(**validated_data)
+    
+#     def update(self, instance, validated_data):
         
-        instance.title = validated_data.get('title', instance.title)
-        instance.storyLine = validated_data.get('storyLine', instance.storyLine)
-        instance.active = validated_data.get('active', instance.active)
-        instance.created = validated_data.get('created', instance.created)
-        instance.save()
-        return instance
+#         # Update and return an existing `Watchlist` instance, given the validated data.
+        
+#         instance.title = validated_data.get('title', instance.title)
+#         instance.storyLine = validated_data.get('storyLine', instance.storyLine)
+#         instance.active = validated_data.get('active', instance.active)
+#         instance.created = validated_data.get('created', instance.created)
+#         instance.save()
+#         return instance
 
 class StreamPlatformSerializer(serializers.Serializer):
+    class Meta:
+        model=StreamPlatform
+        fields='__all__'
+    
+
+
+
+
+
+# class StreamPlatformSerializer(serializers.Serializer):
     id=serializers.IntegerField(read_only=True)
     name=serializers.CharField(max_length=50)
     about=serializers.CharField(max_length=100)
