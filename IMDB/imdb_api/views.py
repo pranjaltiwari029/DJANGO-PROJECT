@@ -124,7 +124,7 @@ def movie_list(request):
 
 def movie_detail(request,pk):
     movie=WatchList.objects.get(pk=pk)
-    serialized=WatchListSeriallizer(movie)
+    serialized=WatchListSerializer(movie)
     return JsonResponse(serialized.data)
 
 # @api_view(['GET','POST'])
