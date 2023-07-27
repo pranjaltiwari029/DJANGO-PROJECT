@@ -29,7 +29,8 @@ class WatchListSerializer(serializers.Serializer):
 #         instance.save()
 #         return instance
 
-class StreamPlatformSerializer(serializers.Serializer):
+class StreamPlatformSerializer(serializers.HyperlinkedModelSerializer):
+    url=serializers.HyperlinkedIdentityField(view_name='stream-platform-detail')
     class Meta:
         model=StreamPlatform
         fields='__all__'
