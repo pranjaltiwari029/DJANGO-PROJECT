@@ -18,8 +18,8 @@ from rest_framework.reverse import reverse
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format)
+        'watchlist': reverse('movie-list', request=request, format=format),
+        'streamplatform': reverse('stream-platform', request=request, format=format)
     })
 
 class StreamPlatformList(generics.ListCreateAPIView):
@@ -115,17 +115,17 @@ class StreamPlatformDetail(generics.RetrieveUpdateDestroyAPIView):
     # the following code is just for reference you can refer these codes to understand functional views 
     # I have commented these functional views as I have used class based views. we can follow both functional as well as class based 
     
-
+@api_view(['GET'])
 def movie_list(request):
     movie_list=WatchList.objects.all()
     serialized= WatchListSerializer(movie_list,many= True)
-    return JsonResponse(serialized.data,safe=False)
+    return Response(serialized.data)
 
-
+@api_view(['GET'])
 def movie_detail(request,pk):
     movie=WatchList.objects.get(pk=pk)
     serialized=WatchListSerializer(movie)
-    return JsonResponse(serialized.data)
+    return Response(serialized.data)
 
 # @api_view(['GET','POST'])
 
