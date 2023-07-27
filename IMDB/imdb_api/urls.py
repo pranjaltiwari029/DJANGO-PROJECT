@@ -9,6 +9,7 @@ urlpatterns = [
     path('list/<int:pk>',views.movie_detail,name='movie-detail'),
     path('stream/',views.StreamPlatformList.as_view(),name='stream-platform'),
     path('stream/<int:pk>',views.StreamPlatformDetail.as_view(),name='stream-platform-detail'),
+    path('',views.api_root),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
