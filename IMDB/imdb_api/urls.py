@@ -14,6 +14,8 @@ urlpatterns = [
     
     path('list/',views.movie_list,name="watchlist-list"),
     path('list/<int:pk>',views.movie_detail,name='watchlist-detail'),
+    path('reviews/',views.ReviewListView.as_view(),name='review-view'),
+    path('reviewz/<int:pk>',views.ReviewDetailView.as_view(),name='review-detail'),
     path('', include(router.urls)),
     path('',views.api_root),
 ]

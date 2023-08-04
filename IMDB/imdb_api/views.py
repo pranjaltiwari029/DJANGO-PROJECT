@@ -1,8 +1,8 @@
 from django.http import HttpResponse,JsonResponse
 from django.http import Http404
 
-from .models import WatchList,StreamPlatform
-from .serializers import WatchListSerializer,StreamPlatformSerializer
+from .models import WatchList,StreamPlatform,Review
+from .serializers import WatchListSerializer,StreamPlatformSerializer,ReviewSerializer
 
 from  rest_framework.response import Response
 from rest_framework import status
@@ -25,6 +25,15 @@ def api_root(request, format=None):
     })
     
     
+class ReviewListView():
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+class ReviewDetailView():
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    
+    
 class StreamPlatformViewSet(viewsets.ModelViewSet):
     
     # This viewset automatically provides `list`, `create`, `retrieve`,
@@ -35,6 +44,24 @@ class StreamPlatformViewSet(viewsets.ModelViewSet):
     serializer_class = StreamPlatformSerializer
     
     
+  
+     
+@api_view(['GET'])
+def movie_list(request):
+    movie_list=WatchList.objects.all()
+    serialized= WatchListSerializer(movie_list,many= True)
+    return Response(serialized.data)
+
+@api_view(['GET'])
+def movie_detail(request,pk):
+    movie=WatchList.objects.get(pk=pk)
+    serialized=WatchListSerializer(movie)
+    return Response(serialized.data)
+
+
+
+  # the following code is just for reference you can refer these codes to understand functional views 
+    # I have commented these functional views as I have used class based views. we can follow both functional as well as class based 
     
 
 # class StreamPlatformList(generics.ListCreateAPIView):
@@ -130,17 +157,6 @@ class StreamPlatformViewSet(viewsets.ModelViewSet):
     # the following code is just for reference you can refer these codes to understand functional views 
     # I have commented these functional views as I have used class based views. we can follow both functional as well as class based 
     
-@api_view(['GET'])
-def movie_list(request):
-    movie_list=WatchList.objects.all()
-    serialized= WatchListSerializer(movie_list,many= True)
-    return Response(serialized.data)
-
-@api_view(['GET'])
-def movie_detail(request,pk):
-    movie=WatchList.objects.get(pk=pk)
-    serialized=WatchListSerializer(movie)
-    return Response(serialized.data)
 
 # @api_view(['GET','POST'])
 
