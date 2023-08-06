@@ -6,8 +6,6 @@ class ReviewSerializer(serializers.Serializer):
         model=Review
         field='__all__'
     
-    
-
 class WatchListSerializer(serializers.Serializer):
     class Meta:
         model=WatchList

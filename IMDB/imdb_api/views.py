@@ -25,11 +25,11 @@ def api_root(request, format=None):
     })
     
     
-class ReviewListView():
+class ReviewListView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
 
-class ReviewDetailView():
+class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     
