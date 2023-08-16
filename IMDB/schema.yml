@@ -1,0 +1,506 @@
+openapi: 3.0.3
+info:
+  title: Your Project API
+  version: 1.0.0
+  description: Your project description
+paths:
+  /:
+    get:
+      operationId: root_retrieve
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /list/:
+    get:
+      operationId: list_retrieve
+      tags:
+      - list
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /list/{id}/:
+    get:
+      operationId: list_retrieve_2
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /list/{id}/review/:
+    get:
+      operationId: list_review_list
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+          description: ''
+  /list/{id}/review-create/:
+    post:
+      operationId: list_review_create_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+  /list/review/{id}/:
+    get:
+      operationId: list_review_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    put:
+      operationId: list_review_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    patch:
+      operationId: list_review_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    delete:
+      operationId: list_review_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - list
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /stream/:
+    get:
+      operationId: stream_list
+      tags:
+      - stream
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StreamPlatform'
+          description: ''
+    post:
+      operationId: stream_create
+      tags:
+      - stream
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamPlatform'
+          description: ''
+  /stream/{id}/:
+    get:
+      operationId: stream_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this stream platform.
+        required: true
+      tags:
+      - stream
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamPlatform'
+          description: ''
+    put:
+      operationId: stream_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this stream platform.
+        required: true
+      tags:
+      - stream
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/StreamPlatform'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamPlatform'
+          description: ''
+    patch:
+      operationId: stream_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this stream platform.
+        required: true
+      tags:
+      - stream
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedStreamPlatform'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedStreamPlatform'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedStreamPlatform'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamPlatform'
+          description: ''
+    delete:
+      operationId: stream_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this stream platform.
+        required: true
+      tags:
+      - stream
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    PatchedReview:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        review_user:
+          type: string
+          readOnly: true
+        watchList:
+          type: string
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 5
+          minimum: 1
+        desc:
+          type: string
+          maxLength: 100
+        active:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+        watchlist:
+          type: integer
+    PatchedStreamPlatform:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        watchlist:
+          type: array
+          items:
+            $ref: '#/components/schemas/WatchList'
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        about:
+          type: string
+          maxLength: 100
+        website:
+          type: string
+          format: uri
+          maxLength: 100
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        review_user:
+          type: string
+          readOnly: true
+        watchList:
+          type: string
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 5
+          minimum: 1
+        desc:
+          type: string
+          maxLength: 100
+        active:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          readOnly: true
+        watchlist:
+          type: integer
+      required:
+      - created
+      - desc
+      - id
+      - rating
+      - review_user
+      - updated
+      - watchList
+      - watchlist
+    StreamPlatform:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        watchlist:
+          type: array
+          items:
+            $ref: '#/components/schemas/WatchList'
+          readOnly: true
+        name:
+          type: string
+          maxLength: 50
+        about:
+          type: string
+          maxLength: 100
+        website:
+          type: string
+          format: uri
+          maxLength: 100
+      required:
+      - about
+      - id
+      - name
+      - watchlist
+      - website
+    WatchList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 50
+        storyLine:
+          type: string
+          maxLength: 100
+        av_rating:
+          type: number
+          format: double
+        number_rating:
+          type: integer
+        active:
+          type: boolean
+        created:
+          type: string
+          format: date-time
+          readOnly: true
+        platform:
+          type: integer
+      required:
+      - created
+      - id
+      - platform
+      - storyLine
+      - title
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
