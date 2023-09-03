@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add_emp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
+</head>
+<body>
+    <div class="container">
+        <h1>Add Employee in Office Employee Management System</h1>
+
+        <a href="/all_emp" role="button" class="btn btn-primary">View All Employee</a>
+        <a href="/add_emp" role="button" class="btn btn-primary">Add An Employee</a>
+        <a href="/remove_emp" role="button" class="btn btn-primary">Remove An Employee</a>
+        <a href="/filter_emp" role="button" class="btn btn-primary">Filter Employee</a>
+    </div>
+
+    <form action "/add-emp" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input type="text" class="form-control" id="first_name" name="first_name" value="{{first_name}}" placeholder="Enter F name">
+          
+          <label for="last_name">last Name</label>
+          <input type="text" class="form-control" id="last_name"  name="last_name" value="{{last_name}}"  placeholder="Enter L name">
+         
+          <label for="salary">salary</label>
+          <input type="number" class="form-control" id="salary"  name="salary"value="{{salary}}"  placeholder="Enter salary">
+         
+          <label for="dept">Department</label>
+          <input type="number" class="form-control" id="dept"  name="dept"value="{{dept}}" placeholder="Enter dept">
+          
+          <label for="role">role</label>
+          <input type="number" class="form-control" id="role" name="role" value="{{role}}"  placeholder="Enter role "  >    <hr>
+          <label for="bonus">Bonus</label>
+          <input type="number" class="form-control" id="bonus" name="bonus" value="{{bonus}}" placeholder="Enter Bonus">
+         
+          <label for="phone">phone</label>
+          <input type="number" class="form-control" id="phone" name="phone" value="{{phone}}" placeholder="Enter phone no.">
+          <hr>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

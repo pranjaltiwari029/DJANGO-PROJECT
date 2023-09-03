@@ -14,6 +14,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 class WatchListSerializer(serializers.ModelSerializer):
     class Meta:
         model=WatchList
+        
         fields='__all__'
         
         

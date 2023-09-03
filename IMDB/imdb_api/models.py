@@ -39,6 +39,7 @@ class Review(models.Model):
     
     def __str__(self):
         string=str(self.rating)+" "+str(self.watchlist.title)
+        
         return string
     
     
