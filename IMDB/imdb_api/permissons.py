@@ -18,7 +18,7 @@ class ReviewUserOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         else:
-            if obj.review_user ==request.user:
+            if obj.review_user == request.user:
                 return True
             else:
                 return False
