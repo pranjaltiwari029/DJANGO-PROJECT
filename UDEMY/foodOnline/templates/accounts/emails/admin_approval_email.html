@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hi {{user.first_name}},
+
+{% if is_approved %}
+Congratulations ,YOur restraunt has been approved . 
+{% else %}
+Sorry, your restraunt has not been registered
+{% endif %}
+
+{% endautoescape %}
