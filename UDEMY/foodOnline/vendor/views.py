@@ -6,6 +6,11 @@ from .models import Vendor
 from django.contrib import messages
 # Create your views here.
 
+from  django.contrib.auth.decorators import login_required,user_passes_test
+from accounts.views import check_role_vendor
+
+@login_required(login_url='login' )
+@user_passes_test(check_role_vendor)
 def vprofile(request):
     profile=get_object_or_404(UserProfile,user=request.user)
     vendor=get_object_or_404(Vendor,user=request.user)
@@ -34,3 +39,7 @@ def vprofile(request):
         'vendor':vendor,
     }
     return render(request,'vendor/vprofile.html',context)
+
+def menu_builder(request):
+    # pass
+    return render(reequest,'vendor/menu_builder.html')
