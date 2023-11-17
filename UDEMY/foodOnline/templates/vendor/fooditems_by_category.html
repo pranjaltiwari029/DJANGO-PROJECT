@@ -23,21 +23,22 @@
 								<h5 class="text-uppercase">Build Your Food Menu</h5>
 									<!-- My Restaurants Form Start -->
 									<hr>
-                                    <h6>Menu Cateogries</h6>
+                                    <button class="btn btn-secondary" onclick="history.back()"><i class="fa fa-angle-left">Back</i> </button>
+                                    <h6>Cateogory: <span class="text-uppercase text-success" >{{category}}</span></h6>
                                     <a href="#" class="btn btn-success float-right m-1">Add Food</a>
-                                    <a href="{% url 'add_category' %}" class="btn btn-info float-right m-1">Add Category</a>
+                                    <a href="#" class="btn btn-info float-right m-1">Add Category</a>
                                     
                                     <table class="table table-hover  table-borderless">
                                          
                                         <tbody>
-                                        {% for cat in categories %}
+                                        {% for food in fooditems %}
                                             <tr>
                                                 <th>{{forloop.counter}}</th>
                                                 <td class="text-left">
-                                                    <a href=" {%url 'fooditems_by_category' cat.id %} "> <p class="mb-0 font-weight-bold">{{cat}}</p>
-                                                    <small> {{cat.description}} </small></a>
+                                                    <a href=" # "> <p class="mb-0 font-weight-bold">{{food}}</p>
+                                                    <small> {{food.description}} </small></a>
                                                 </td>
-                                                <td><a href="{% url 'edit_category' cat.id  %}"><i class="fa fa-pencil" ></i></a> <a href="{% url 'delete_category' cat.id  %} " onclick="return confirm('are you sre you want to delete this category')"><i class="fa fa-trash" ></i></a></td>
+                                                <td><i class="fa fa-pencil" ></i> <i class="fa fa-trash" ></i></td>
 
                                             </tr>
                                         {% endfor %}
