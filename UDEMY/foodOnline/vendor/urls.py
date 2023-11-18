@@ -14,5 +14,11 @@ urlpatterns = [
     path('menu-bulider/category/edit/<int:pk>',views.edit_category,name="edit_category"),
     path('menu-bulider/category/delete/<int:pk>',views.delete_category,name="delete_category"),
 
+    # food item crud
+    path('menu-bulider/food/add/',views.add_food,name="add_food"),
+    path('menu-bulider/food/edit/<int:pk>/',views.edit_food,name="edit_food"),
+    path('menu-bulider/food/delete/<int:pk>',views.delete_food,name="delete_food"),
+
+
 
 ]
