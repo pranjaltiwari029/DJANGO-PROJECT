@@ -103,15 +103,18 @@
                                         <ul>
                                             {% for food in category.fooditems.all %}
                                             <li>
-                                                <div class="image-holder"> <a href="assets/extra-images/cover-photo12-1024x187.jpg"><img src="assets/extra-images/cover-photo12-150x150.jpg" alt=""></a></div>
+                                                {% comment %} <div class="image-holder"> <img src="{{vendor.user_profile.profile_picture.url}}" alt=""></div> {% endcomment %}
+                                                <div class="image-holder"> <img src="{{food.image.url}}" alt=""></div>
                                                 <div class="text-holder">
                                                     <h6>{{food}}</h6>
                                                     <span>{{food.description}}</span>
                                                 </div>
                                                 <div class="price-holder">
                                                     <span class="price">{{food.price}}</span>
-                                                    <a href="#" class="restaurant-add-menu-btn"><i class="icon-plus4 text-color"></i></a>
-                                                    <span id="add-menu-loader-10"></span>
+                                                    <a href="#" class="decrease_cart" style="margin-right:20px"><i class="icon-minus text-color"></i></a>
+                                                    <label id="qty">0</label>
+                                                    <a href="#" class="add_to_cart" data.id="{{food.id}}"><i class="icon-plus4 text-color"></i></a>
+                                                
                                                 </div>
                                             </li>
                                             {% endfor %}
