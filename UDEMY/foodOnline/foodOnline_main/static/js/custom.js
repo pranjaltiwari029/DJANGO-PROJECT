@@ -4,17 +4,26 @@ $(document).ready(function () {
         
         food_id = $(this).attr('data.id');
         url = $(this).attr('data.url');
-        data = (food_id: food_id);
+        data = { food_id: food_id, }
         $.ajax({
             type: 'GET',
             url: url,
             data: data,
             success: function (response) {
-                alert(response)
+                console.log(response)
             }
         })
         
 
 
+    })
+
+    // place the cart item quANTity on load
+
+    $('.item-qty').each(function () {
+        var the_id = $(this).attr('id')
+        var qty = $(this).attr('data-qty')
+        $('#'+the_id).html()
+        console.log(qty)
     })
 });

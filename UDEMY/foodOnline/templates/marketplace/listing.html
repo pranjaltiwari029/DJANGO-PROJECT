@@ -15,7 +15,7 @@
                             <div class="listing-sorting-holder">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <h4>15 Restaurant's found</h4>
+                                        <h4>{{ vendor_count }} Restaurant's found</h4>
                                     </div>
                                 </div>
                             </div>
@@ -46,17 +46,21 @@
                                             </div>
                                             <div class="post-title">
                                                 <h5>
-                                                    <a href="{% url 'vendor_detail' vendor.vendor_slug %}">{{vendor.vendor_name}}</a>
+                                                    {% comment %} <a href="{% url 'vendor_detail' vendor.vendor_slug %}">{{vendor.vendor_name}}</a> {% endcomment %}
+                                                    {{vendor.vendor_name}}
                                                 </h5>
                                             </div>
                                             {% if vendor.user_profile.address %}
                                             <span><small class="text-muted">{{vendor.user_profile.address}}</small></span>
                                             {% endif %}
-                                            
+                                            {% if souce_location %}
+                                            <br>
+                                            <span><small>{{vendor.kms}} km away from {{source.location}}</small></span>
+                                            {% endif %}
                                         </div>
                                         <div class="list-option">
 
-                                            <a href="{% url 'vendor_detail' vendor.vendor_slug %}" class="viewmenu-btn text-color">View Menu</a>
+                                            {% comment %} <a href="{% url 'vendor_detail' vendor.vendor_slug %}" class="viewmenu-btn text-color">View Menu</a> {% endcomment %}
                                         </div>
                                     </li>
                                     {% endfor %}

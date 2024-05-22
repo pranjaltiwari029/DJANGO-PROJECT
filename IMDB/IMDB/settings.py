@@ -138,7 +138,7 @@ REST_FRAMEWORK = {
 
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'IMDB API project',
+    'TITLE': 'CineAPI project',
     'DESCRIPTION': 'Django rest framework API project',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
